@@ -472,6 +472,8 @@ do
   -- - sd'   - [S]urround [D]elete [']quotes
   -- - sr)'  - [S]urround [R]eplace [)] [']
   require('mini.surround').setup()
+  -- Auto-close brackets and quotes
+  require('mini.pairs').setup()
 
   -- Simple and easy statusline.
   --  You could remove this setup call if you don't like it,
@@ -733,16 +735,43 @@ do
   --  See `:help lsp-config` for information about keys and how to configure
   ---@type table<string, vim.lsp.Config>
   local servers = {
-    clangd = {},
-    gopls = {},
-    pyright = {},
-    tsc = {},
+    clangd = {}, -- c,c++
+
+    gopls = {}, -- golang
+
+    ts_ls = {}, -- javascript and frameworks
+
+    asm_lsp = {}, -- assembly
+
     --
     -- Some languages (like rust) have entire language plugins that can be useful:
     --    https://github.com/mrcjkb/rustaceanvim
     --
     -- But for many setups, the LSP (`rust_analyzer`) will work just fine
     rust_analyzer = {},
+
+    -- Used to format Python code
+    ruff = {
+      on_attach = function(client, _)
+        client.server_capabilities.hoverProvider = false
+    end,
+    },
+
+    -- Python, config to work with ruff
+    basedpyright = {
+      settings = {
+        basedpyright = {
+          disableOrganizeImports = true,
+          analysis = {
+            typeCheckingMode = "standard",
+            diagnosticSeverityOverrides = {
+              reportUnusedImport = "none",
+              reportUnusedVariable = "none",
+            },
+          },
+        },
+      },
+    },
 
     stylua = {}, -- Used to format Lua code
 

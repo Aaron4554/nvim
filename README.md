@@ -1,5 +1,4 @@
 # Aaron's Neovim Config
-I'll add to this later. after school today.
 
 ## Presets
 Number Line
@@ -11,6 +10,7 @@ Min 10 lines above and below cursor
 Ask to save unsaved changes
 Yank Highlighting
 Color: tokyongiht
+
 ## Keymaps
 Leader ' '
 <Esc> clear search highlights
@@ -21,7 +21,7 @@ guess-indent
 gitsigns
 which-key
 todo-comments
-mini
+mini: icons, ai, surround, pairs, statusline
 telescope
 fidget
 nvim-lspconfig
@@ -30,10 +30,14 @@ mason-lspconfig
 manson-tool-installer
 
 ## LSPs
-clangd
-gopls
-pyright
-tsc
-rust_analyzer
-stylua
+clangd - for c and c++
+gopls - for golang
+basedpyright - for Python
+ts_ls - for javascript and frameworks
+rust_analyzer - for rust
+lua_ls - for lua
 
+
+## Formatters
+stylua
+ruff
