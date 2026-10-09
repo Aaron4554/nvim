@@ -159,7 +159,7 @@ do
   vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
   -- Enable visual completion menu
   vim.opt.wildmenu = true
-  -- Enable bash-style tab complete
+  -- tab complete
   vim.opt.wildmode = 'longest:full,full'
 
   -- Preview substitutions live, as you type!
