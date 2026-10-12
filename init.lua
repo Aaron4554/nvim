@@ -256,7 +256,7 @@ do
 
       local result = vim.system({ 'git', 'commit', '-m', input}, {text = true }):wait()
       if result.code == 0 then
-        vim.notify('Commited with message' .. input)
+        vim.notify('Commited with message ' .. input)
       else
         local output = (result.stderr or '') .. (result.stdout or '')
         vim.notify('git commit failed:\n' .. output, vim.log.levels.ERROR)
