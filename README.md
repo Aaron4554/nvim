@@ -1,7 +1,7 @@
 # Aaron's Neovim Config
 
 ## Presets
-Number Line
+Number Line\n
 Relative Number Line
 Sync OS and Neovim clipboard
 Case-insensitive search
