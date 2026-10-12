@@ -229,6 +229,41 @@ do
   -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
   -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+  vim.keymap.set('n', '<leader>ga', function()
+    vim.ui.input({
+      prompt = 'git add: ',
+      default = vim.fn.expand '%',
+      completion = 'file',
+    }, function(input)
+      if not input or input == '' then return end
+
+      local result = vim.system({ 'git', 'add', input }, { text = true, cwd = vim.fn.getcwd() }):wait()
+      if result.code == 0 then
+        vim.notify('Staged: ' .. input)
+      else
+        local output = (result.stderr or '') .. (result.stdout or '')
+        vim.notify('git add failed:\n' .. output, vim.log.levels.ERROR)
+      end
+    end)
+  end, {desc = '[G]it [A]dd file'})
+
+  vim.keymap.set('n', '<leader>gc', function()
+    vim.ui.input({
+      prompt = 'Commit message?: ',
+    }, function(input)
+        if input == nil then return end
+        if input == '' then input = 'I was lazy' end
+
+      local result = vim.system({ 'git', 'commit', '-m', input}, {text = true }):wait()
+      if result.code == 0 then
+        vim.notify('Commited with message' .. input)
+      else
+        local output = (result.stderr or '') .. (result.stdout or '')
+        vim.notify('git commit failed:\n' .. output, vim.log.levels.ERROR)
+      end
+    end)
+  end, {desc = '[G]it [C]ommit'})
+
   -- Keybinds to make split navigation easier.
   --  Use CTRL+<hjkl> to switch between windows
   --
@@ -430,7 +465,7 @@ do
   vim.pack.add { { src = gh'catppuccin/nvim', name = "catppuccin"}}
   ---@diagnostic disable-next-line: missing-fields
   require('catppuccin').setup {
-    flavour = 'frappe',
+    flavour = 'mocha',
     transparent_background = true,
     styles = {
       comments = { "italic" },
