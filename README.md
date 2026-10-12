@@ -49,5 +49,5 @@ ruff
 Remove git add default input\
 Add git add -up support\
 Add a <leader>gs [G]it [S]tatus\
-Add a <leader>gp [G]it [P]ush (origin <branch_name>)\
-Add a <leader>gpu [G]it [PU]ll
+Add a <leader>gpu [G]it [P]ull\
+Add a <leader>gp [G]it [PU]sh (origin <branch_name>)
