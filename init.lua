@@ -246,7 +246,7 @@ do
         vim.notify('git add failed:\n' .. output, vim.log.levels.ERROR)
       end
     end)
-  end, {desc = '[G]it [A]dd file'})
+  end, {desc = '[g]it [a]dd file'})
 
   vim.keymap.set('n', '<leader>gc', function()
     vim.ui.input({
@@ -263,7 +263,7 @@ do
         vim.notify('git commit failed:\n' .. output, vim.log.levels.ERROR)
       end
     end)
-  end, {desc = '[G]it [C]ommit'})
+  end, {desc = '[g]it [c]ommit'})
 
   -- Keybinds to make split navigation easier.
   --  Use CTRL+<hjkl> to switch between windows
