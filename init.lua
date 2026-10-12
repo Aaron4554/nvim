@@ -229,6 +229,7 @@ do
   -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
   -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+  -- Git keybinds
   vim.keymap.set('n', '<leader>ga', function()
     vim.ui.input({
       prompt = 'git add: ',
