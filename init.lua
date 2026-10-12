@@ -246,7 +246,7 @@ do
       end
     end)
   end, {desc = '[G]it [A]dd file'})
--- test
+
   vim.keymap.set('n', '<leader>gc', function()
     vim.ui.input({
       prompt = 'Commit message?: ',
