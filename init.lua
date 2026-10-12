@@ -465,7 +465,7 @@ do
   vim.pack.add { { src = gh'catppuccin/nvim', name = "catppuccin"}}
   ---@diagnostic disable-next-line: missing-fields
   require('catppuccin').setup {
-    flavour = 'mocha',
+    flavour = 'frappe',
     transparent_background = true,
     styles = {
       comments = { "italic" },
