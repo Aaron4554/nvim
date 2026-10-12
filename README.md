@@ -9,7 +9,7 @@ Show preview of search and substitute\
 Min 10 lines above and below cursor\
 Ask to save unsaved changes\
 Yank Highlighting\
-Color: tokyongiht\
+Color: catppuccin-frappe
 
 ## Keymaps
 Leader ' '\
