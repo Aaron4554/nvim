@@ -265,6 +265,23 @@ do
     end)
   end, {desc = '[g]it [c]ommit'})
 
+  vim.keymap.set('n', '<leader>gp', function()
+    vim.ui.input({
+      prompt = 'git pull: ',
+      default = 'main',
+    }, function(input)
+      if not input or input == '' then return end
+
+          local result = vim.system({'git', 'pull', 'origin', input }, { text = true }):wait()
+          if result.code == 0 then
+            vim.notify('Successfully pulled')
+          else
+            local output = (result.stderr or '') .. (result.stdout or '')
+            vim.notify('git pull failed:\n' .. output, vim.log.levels.ERROR)
+          end
+      end)
+  end, {desc = '[g]it [p]ull'})
+
   -- Keybinds to make split navigation easier.
   --  Use CTRL+<hjkl> to switch between windows
   --
@@ -427,7 +444,7 @@ do
       vim.keymap.set('n', '<leader>gr', gitsigns.reset_hunk, { desc = '[g]it [r]eset hunk', buf = bufnr })
       vim.keymap.set('n', '<leader>gS', gitsigns.stage_buffer, { desc = '[g]it [S]tage buffer', buf = bufnr })
       vim.keymap.set('n', '<leader>gR', gitsigns.reset_buffer, { desc = '[g]it [R]eset buffer', buf = bufnr })
-      vim.keymap.set('n', '<leader>gp', gitsigns.preview_hunk, { desc = '[g]it [p]review hunk', buf = bufnr })
+      vim.keymap.set('n', '<leader>gph', gitsigns.preview_hunk, { desc = '[g]it [p]review [h]unk', buf = bufnr })
       vim.keymap.set('n', '<leader>gi', gitsigns.preview_hunk_inline, { desc = '[g]it preview hunk [i]nline', buf = bufnr })
       vim.keymap.set('n', '<leader>gb', function() gitsigns.blame_line { full = true } end, { desc = '[g]it [b]lame line', buf = bufnr })
       vim.keymap.set('n', '<leader>gd', gitsigns.diffthis, { desc = '[g]it [d]iff against index', buf = bufnr })
