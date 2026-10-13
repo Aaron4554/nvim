@@ -46,6 +46,4 @@ ruff
 
 
 ## Plans
-Add a <leader>gs [g]it [s]tatus\
-Add a <leader>gpu [g]it [p]ull\
-Add a <leader>gp [g]it [pu]sh (origin <branch_name>)
+Add a <leader>gs [g]it [s]tatus
