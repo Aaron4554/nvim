@@ -42,7 +42,6 @@ ts_ls - for javascript and frameworks\
 rust_analyzer - for rust\
 lua_ls - for lua
 
-
 ## Formatters
 stylua\
 ruff
