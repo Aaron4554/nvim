@@ -46,4 +46,4 @@ ruff
 
 
 ## Plans
-Add a <leader>gs [g]it [s]tatus\
+Add a <leader>gs [g]it [s]tatus
