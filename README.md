@@ -14,8 +14,8 @@ Color: catppuccin-frappe
 ## Keymaps
 Leader ' '\
 <Esc> clear search highlights\
-<leader>ga [G]it [A]dd\
-<leader>gc [G]it [C]ommit
+<leader>ga [g]it [a]dd\
+<leader>gc [g]it [c]ommit
 
 ## Packages
 Package manager: vim.pack\
@@ -46,8 +46,6 @@ ruff
 
 
 ## Plans
-Remove git add default input\
-Add git add -up support\
-Add a <leader>gs [G]it [S]tatus\
-Add a <leader>gp [G]it [P]ush (origin <branch_name>)\
-Add a <leader>gpu [G]it [PU]ll
+Add a <leader>gs [g]it [s]tatus\
+Add a <leader>gpu [g]it [p]ull\
+Add a <leader>gp [g]it [pu]sh (origin <branch_name>)
