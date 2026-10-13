@@ -257,7 +257,7 @@ do
 
       local result = vim.system({ 'git', 'commit', '-m', input}, {text = true }):wait()
       if result.code == 0 then
-        vim.notify('Commited with message ' .. input)
+        vim.notify('Committed with message ' .. input)
       else
         local output = (result.stderr or '') .. (result.stdout or '')
         vim.notify('git commit failed:\n' .. output, vim.log.levels.ERROR)
@@ -470,8 +470,8 @@ do
       vim.keymap.set('n', '<leader>gQ', function() gitsigns.setqflist 'all' end, { desc = '[g]it hunk [Q]uickfix list (all files in repo)', buf = bufnr })
       vim.keymap.set('n', '<leader>gq', gitsigns.setqflist, { desc = '[g]it hunk [q]uickfix list (all changes in this file)', buf = bufnr })
       -- Toggles
-      vim.keymap.set('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line', buf = bufnr })
-      vim.keymap.set('n', '<leader>tw', gitsigns.toggle_word_diff, { desc = '[T]oggle git intra-line [w]ord diff', buf = bufnr })
+      vim.keymap.set('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[t]oggle git show [b]lame line', buf = bufnr })
+      vim.keymap.set('n', '<leader>tw', gitsigns.toggle_word_diff, { desc = '[t]oggle git intra-line [w]ord diff', buf = bufnr })
       -- Text object
       vim.keymap.set({ 'o', 'x' }, 'ih', gitsigns.select_hunk, { desc = 'text object [i]nside [h]unk', buf = bufnr })
     end,
