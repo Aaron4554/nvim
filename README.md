@@ -15,7 +15,9 @@ Color: catppuccin-frappe
 Leader ' '\
 <Esc> clear search highlights\
 <leader>ga [g]it [a]dd\
-<leader>gc [g]it [c]ommit
+<leader>gc [g]it [c]ommit\
+<leader>gp [g]it [p]ull\
+<leader>gP [g]it [P]ull
 
 ## Packages
 Package manager: vim.pack\
