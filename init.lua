@@ -282,6 +282,24 @@ do
       end)
   end, {desc = '[g]it [p]ull'})
 
+  vim.keymap.set('n', '<leader>gP', function()
+    vim.ui.input({
+      prompt = 'git push: ',
+      default = vim.b.gitsigns_head,
+    }, function(input)
+      if not input or input == '' then return end
+
+          local result = vim.system({'git', 'push', 'origin', input }, { text = true }):wait()
+          if result.code == 0 then
+            vim.notify('Successfully pushed')
+          else
+            local output = (result.stderr or '') .. (result.stdout or '')
+            vim.notify('git push failed:\n' .. output, vim.log.levels.ERROR)
+          end
+      end)
+  end, {desc = '[g]it [P]ush'})
+
+
   -- Keybinds to make split navigation easier.
   --  Use CTRL+<hjkl> to switch between windows
   --
