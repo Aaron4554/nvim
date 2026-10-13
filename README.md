@@ -9,7 +9,8 @@ Show preview of search and substitute\
 Min 10 lines above and below cursor\
 Ask to save unsaved changes\
 Yank Highlighting\
-Color: catppuccin-frappe
+Color: catppuccin-frappe\
+background: transparent
 
 ## Keymaps
 Leader ' '\
