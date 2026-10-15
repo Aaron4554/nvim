@@ -55,11 +55,15 @@ gopls - for golang\
 basedpyright - for Python\
 ts_ls - for javascript and frameworks\
 rust_analyzer - for rust\
-lua_ls - for lua
+lua_ls - for lua\
+html --HTML\
+cssls -- CSS\
+jdtls -- java
 
 ## Formatters
 stylua\
-ruff
+ruff\
+csskit
 
 
 ## Plans
