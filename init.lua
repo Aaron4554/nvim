@@ -829,6 +829,8 @@ do
 
     cssls = {}, -- CSS
 
+    jdtls = {}, -- java
+
     --
     -- Some languages (like rust) have entire language plugins that can be useful:
     --    https://github.com/mrcjkb/rustaceanvim
@@ -899,6 +901,7 @@ do
     gh 'mason-org/mason.nvim',
     gh 'mason-org/mason-lspconfig.nvim',
     gh 'WhoIsSethDaniel/mason-tool-installer.nvim',
+    gh 'mfussenegger/nvim-lint',
   }
 
   -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -918,7 +921,7 @@ do
   -- You can press `g?` for help in this menu.
   local ensure_installed = vim.tbl_keys(servers or {})
   vim.list_extend(ensure_installed, {
-    -- You can add other tools here that you want Mason to install
+    'htmlhint',
   })
 
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -927,6 +930,14 @@ do
     vim.lsp.config(name, server)
     vim.lsp.enable(name)
   end
+  local lint = require 'lint'
+  lint.linters_by_ft = {
+    html = {'htmlhint'},
+  }
+  vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufWritePost', 'InsertLeave'}, { group = vim.api.nvim_create_augroup('nvim-lint', { clear = true}),
+  callback = function() lint.try_lint() end,
+  })
+
 end
 
 -- ============================================================
@@ -955,6 +966,7 @@ do
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
+      lua = { 'stylua' }
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
