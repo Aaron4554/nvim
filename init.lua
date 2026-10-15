@@ -246,16 +246,16 @@ do
         vim.notify('git add failed:\n' .. output, vim.log.levels.ERROR)
       end
     end)
-  end, {desc = '[g]it [a]dd file'})
+  end, { desc = '[g]it [a]dd file' })
 
   vim.keymap.set('n', '<leader>gc', function()
     vim.ui.input({
       prompt = 'Commit message?: ',
     }, function(input)
-        if input == nil then return end
-        if input == '' then input = 'I was lazy' end
+      if input == nil then return end
+      if input == '' then input = 'I was lazy' end
 
-      local result = vim.system({ 'git', 'commit', '-m', input}, {text = true }):wait()
+      local result = vim.system({ 'git', 'commit', '-m', input }, { text = true }):wait()
       if result.code == 0 then
         vim.notify('Committed with message ' .. input)
       else
@@ -263,7 +263,7 @@ do
         vim.notify('git commit failed:\n' .. output, vim.log.levels.ERROR)
       end
     end)
-  end, {desc = '[g]it [c]ommit'})
+  end, { desc = '[g]it [c]ommit' })
 
   vim.keymap.set('n', '<leader>gp', function()
     vim.ui.input({
@@ -272,15 +272,15 @@ do
     }, function(input)
       if not input or input == '' then return end
 
-          local result = vim.system({'git', 'pull', 'origin', input }, { text = true }):wait()
-          if result.code == 0 then
-            vim.notify('Successfully pulled')
-          else
-            local output = (result.stderr or '') .. (result.stdout or '')
-            vim.notify('git pull failed:\n' .. output, vim.log.levels.ERROR)
-          end
-      end)
-  end, {desc = '[g]it [p]ull'})
+      local result = vim.system({ 'git', 'pull', 'origin', input }, { text = true }):wait()
+      if result.code == 0 then
+        vim.notify 'Successfully pulled'
+      else
+        local output = (result.stderr or '') .. (result.stdout or '')
+        vim.notify('git pull failed:\n' .. output, vim.log.levels.ERROR)
+      end
+    end)
+  end, { desc = '[g]it [p]ull' })
 
   vim.keymap.set('n', '<leader>gP', function()
     vim.ui.input({
@@ -289,16 +289,15 @@ do
     }, function(input)
       if not input or input == '' then return end
 
-          local result = vim.system({'git', 'push', 'origin', input }, { text = true }):wait()
-          if result.code == 0 then
-            vim.notify('Successfully pushed')
-          else
-            local output = (result.stderr or '') .. (result.stdout or '')
-            vim.notify('git push failed:\n' .. output, vim.log.levels.ERROR)
-          end
-      end)
-  end, {desc = '[g]it [P]ush'})
-
+      local result = vim.system({ 'git', 'push', 'origin', input }, { text = true }):wait()
+      if result.code == 0 then
+        vim.notify 'Successfully pushed'
+      else
+        local output = (result.stderr or '') .. (result.stdout or '')
+        vim.notify('git push failed:\n' .. output, vim.log.levels.ERROR)
+      end
+    end)
+  end, { desc = '[g]it [P]ush' })
 
   -- Keybinds to make split navigation easier.
   --  Use CTRL+<hjkl> to switch between windows
@@ -498,13 +497,13 @@ do
   -- change the command under that to load whatever the name of that colorscheme is.
   --
   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  vim.pack.add { { src = gh'catppuccin/nvim', name = "catppuccin"}}
+  vim.pack.add { { src = gh 'catppuccin/nvim', name = 'catppuccin' } }
   ---@diagnostic disable-next-line: missing-fields
   require('catppuccin').setup {
     flavour = 'frappe',
     transparent_background = true,
     styles = {
-      comments = { "italic" },
+      comments = { 'italic' },
     },
     integrations = {
       blink_cmp = true,
@@ -825,6 +824,12 @@ do
 
     asm_lsp = {}, -- assembly
 
+    html = {}, -- HTML
+
+    cssls = {}, -- CSS
+
+    jdtls = {}, -- java
+
     --
     -- Some languages (like rust) have entire language plugins that can be useful:
     --    https://github.com/mrcjkb/rustaceanvim
@@ -834,9 +839,7 @@ do
 
     -- Used to format Python code
     ruff = {
-      on_attach = function(client, _)
-        client.server_capabilities.hoverProvider = false
-    end,
+      on_attach = function(client, _) client.server_capabilities.hoverProvider = false end,
     },
 
     -- Python, config to work with ruff
@@ -845,10 +848,10 @@ do
         basedpyright = {
           disableOrganizeImports = true,
           analysis = {
-            typeCheckingMode = "standard",
+            typeCheckingMode = 'standard',
             diagnosticSeverityOverrides = {
-              reportUnusedImport = "none",
-              reportUnusedVariable = "none",
+              reportUnusedImport = 'none',
+              reportUnusedVariable = 'none',
             },
           },
         },
@@ -895,6 +898,7 @@ do
     gh 'mason-org/mason.nvim',
     gh 'mason-org/mason-lspconfig.nvim',
     gh 'WhoIsSethDaniel/mason-tool-installer.nvim',
+    gh 'mfussenegger/nvim-lint',
   }
 
   -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -914,7 +918,7 @@ do
   -- You can press `g?` for help in this menu.
   local ensure_installed = vim.tbl_keys(servers or {})
   vim.list_extend(ensure_installed, {
-    -- You can add other tools here that you want Mason to install
+    'htmlhint',
   })
 
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -923,6 +927,14 @@ do
     vim.lsp.config(name, server)
     vim.lsp.enable(name)
   end
+  local lint = require 'lint'
+  lint.linters_by_ft = {
+    html = { 'htmlhint' },
+  }
+  vim.api.nvim_create_autocmd(
+    { 'BufReadPost', 'BufWritePost', 'InsertLeave' },
+    { group = vim.api.nvim_create_augroup('nvim-lint', { clear = true }), callback = function() lint.try_lint() end }
+  )
 end
 
 -- ============================================================
@@ -937,8 +949,8 @@ do
     format_on_save = function(bufnr)
       -- You can specify filetypes to autoformat on save here:
       local enabled_filetypes = {
-        -- lua = true,
-        -- python = true,
+        lua = true,
+        python = true,
       }
       if enabled_filetypes[vim.bo[bufnr].filetype] then
         return { timeout_ms = 500 }
@@ -951,6 +963,7 @@ do
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
+      lua = { 'stylua' },
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
