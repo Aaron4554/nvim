@@ -951,6 +951,13 @@ do
       local enabled_filetypes = {
         lua = true,
         python = true,
+        html = true,
+        css = true,
+        json = true,
+        javascript = true,
+        javascriptreact = true,
+        typescript = true,
+        typescriptreact = true,
       }
       if enabled_filetypes[vim.bo[bufnr].filetype] then
         return { timeout_ms = 500 }
