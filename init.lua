@@ -919,6 +919,11 @@ do
   local ensure_installed = vim.tbl_keys(servers or {})
   vim.list_extend(ensure_installed, {
     'htmlhint',
+    'csskit',
+    'typos',
+    'write-good',
+    'yamllint',
+    'prettier',
   })
 
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -930,6 +935,10 @@ do
   local lint = require 'lint'
   lint.linters_by_ft = {
     html = { 'htmlhint' },
+    yaml = { 'yamllint' },
+    markdown = { 'write_good' },
+    text = { 'write_good' },
+    ['*'] = { 'typos' },
   }
   vim.api.nvim_create_autocmd(
     { 'BufReadPost', 'BufWritePost', 'InsertLeave' },

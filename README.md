@@ -63,7 +63,13 @@ jdtls -- java
 ## Formatters
 stylua\
 ruff\
-csskit
+
+## Linters
+ruff\
+htmlhint\
+yamllint\
+write-good\
+typos
 
 
 ## Plans
