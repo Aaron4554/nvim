@@ -923,7 +923,6 @@ do
     'typos',
     'write-good',
     'yamllint',
-    'prettierd',
     'prettier',
   })
 
@@ -937,7 +936,7 @@ do
   lint.linters_by_ft = {
     html = { 'htmlhint' },
     yaml = { 'yamllint' },
-    makrdown = { 'write_good' },
+    markdown = { 'write_good' },
     text = { 'write_good' },
     ['*'] = { 'typos' },
   }
