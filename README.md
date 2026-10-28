@@ -62,7 +62,7 @@ jdtls -- java
 
 ## Formatters
 stylua\
-ruff\
+ruff
 
 ## Linters
 ruff\
