@@ -74,4 +74,4 @@ typos
 
 ## Plans
 Add a \<leader\>gs [g]it [s]tatus\
-Add a \<leader\>gm [g]it commit --a[m]end
+Add a \<leader\>gPl [g]it [P]ush --force-with-[l]ease
