@@ -265,6 +265,27 @@ do
     end)
   end, { desc = '[g]it [c]ommit' })
 
+  vim.keymap.set('n', '<leader>gm', function()
+    local getLastLog = vim.system({ 'git', 'log', '-1', '--pretty=%B' }, { text = true }):wait()
+    if getLastLog == nil then return end
+    if getLastLog.code == 0 then
+      vim.ui.input({
+        prompt = 'Amend message?: ',
+        default = getLastLog.stdout,
+      }, function(input)
+        if input == nil then return end
+
+        local result = vim.system({ 'git', 'commit', '--amend', '-m', input }, { text = true }):wait()
+        if result.code == 0 then
+          vim.notify('Amended with message: ' .. input)
+        else
+          local output = (result.stderr or '') .. (result.stdout or '')
+          vim.notify('git amend failted:\n' .. output, vim.loglevels.ERROR)
+        end
+      end)
+    end
+  end, { desc = '[g]it commit --a[m]end' })
+
   vim.keymap.set('n', '<leader>gp', function()
     vim.ui.input({
       prompt = 'git pull: ',
