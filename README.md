@@ -20,6 +20,7 @@ Leader ' '\
 \<leader\>gm [g]it commit --a[m]end
 \<leader\>gp [g]it [p]ull\
 \<leader\>gP [g]it [P]ush\
+\<leader\>gPl [g]it [P]ush force-with-[l]ease\
 ]c Jump to next git [c]hange\
 \<leader\>gs [g]it[s]tage hunk\
 \<leader\>gr [g]it [r]evert hunk\
