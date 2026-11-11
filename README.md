@@ -17,8 +17,10 @@ Leader ' '\
 \<Esc\> clear search highlights\
 \<leader\>ga [g]it [a]dd\
 \<leader\>gc [g]it [c]ommit\
+\<leader\>gm [g]it commit --a[m]end
 \<leader\>gp [g]it [p]ull\
-\<leader\>gP [g]it [P]ull\
+\<leader\>gP [g]it [P]ush\
+\<leader\>gPl [g]it [P]ush force-with-[l]ease\
 ]c Jump to next git [c]hange\
 \<leader\>gs [g]it[s]tage hunk\
 \<leader\>gr [g]it [r]evert hunk\
@@ -50,27 +52,34 @@ mason-lspconfig\
 manson-tool-installer
 
 ## LSPs
-clangd - for c and c++\
-gopls - for golang\
-basedpyright - for Python\
-ts_ls - for javascript and frameworks\
-rust_analyzer - for rust\
-lua_ls - for lua\
-html --HTML\
-cssls -- CSS\
-jdtls -- java
+asm-lsp - assembly \
+basedpyright - Python\
+clangd - c and c++\
+css-lsp - css\
+csskit - css\
+gopls - golang\
+html-lsp -- HTML\
+jdtls - java\
+lua-language-server - lua\
+ruff - python\
+rust_analyzer - rust\
+stylua - lua\
+typescript-language-server - typescript and javascript
 
 ## Formatters
-stylua\
-ruff
+csskit\
+prettier\
+prettierd\
+ruff\
+stylua
 
 ## Linters
-ruff\
+csskit\
 htmlhint\
-yamllint\
+ruff\
+typos\
 write-good\
-typos
-
+yamllint
 
 ## Plans
 Add a \<leader\>gs [g]it [s]tatus\
