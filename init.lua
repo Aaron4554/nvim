@@ -230,6 +230,7 @@ do
   -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
   -- Git keybinds
+  -- git add
   vim.keymap.set('n', '<leader>ga', function()
     vim.ui.input({
       prompt = 'git add: ',
@@ -248,6 +249,7 @@ do
     end)
   end, { desc = '[g]it [a]dd file' })
 
+  -- git commit
   vim.keymap.set('n', '<leader>gc', function()
     vim.ui.input({
       prompt = 'Commit message?: ',
@@ -265,6 +267,7 @@ do
     end)
   end, { desc = '[g]it [c]ommit' })
 
+  -- git commit --amend
   vim.keymap.set('n', '<leader>gm', function()
     local getLastLog = vim.system({ 'git', 'log', '-1', '--pretty=%B' }, { text = true }):wait()
     if getLastLog == nil then return end
@@ -286,6 +289,7 @@ do
     end
   end, { desc = '[g]it commit --a[m]end' })
 
+  --git pull
   vim.keymap.set('n', '<leader>gp', function()
     vim.ui.input({
       prompt = 'git pull: ',
@@ -303,6 +307,7 @@ do
     end)
   end, { desc = '[g]it [p]ull' })
 
+  -- git push
   vim.keymap.set('n', '<leader>gP', function()
     vim.ui.input({
       prompt = 'git push: ',
@@ -319,6 +324,24 @@ do
       end
     end)
   end, { desc = '[g]it [P]ush' })
+
+  -- git push --force-with-lease
+  vim.keymap.set('n', '<leader>gPl', function()
+    vim.ui.input({
+      prompt = 'git push force with lease: ',
+      default = vim.b.gitsigns_head,
+    }, function(input)
+      if not input or input == '' then return end
+
+      local result = vim.system({ 'git', 'push', '--force-with-lease', 'origin', input }, { text = true }):wait()
+      if result.code == 0 then
+        vim.notify 'Successfully pushed'
+      else
+        local output = (result.stderr or '') .. (result.stdout or '')
+        vim.notify('git push failed:\n' .. output, vim.log.levels.ERROR)
+      end
+    end)
+  end, { desc = '[g]it [P]ush --force-with-[l]ease' })
 
   -- Keybinds to make split navigation easier.
   --  Use CTRL+<hjkl> to switch between windows
